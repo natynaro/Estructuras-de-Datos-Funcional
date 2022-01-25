@@ -20,5 +20,5 @@ public class MainTrabajador {
 		trabajador1.setDiasTrabajados(scanner.nextDouble());
 		trabajador1.Salario();
 	}
-
+//aaaaaaaaaa
 }
