@@ -1,5 +1,5 @@
 package Salario;
-import java.util.Scanner;
+import java.util.*;
 
 public class MainTrabajador {
 
@@ -7,18 +7,30 @@ public class MainTrabajador {
 		// TODO Auto-generated method stub
 		Scanner scanner = new Scanner (System.in);
 		String nombre="";
-		double salario=0; //el básico
+		double salario=0; //el bï¿½sico
+				
+		Trabajador[] arr= new Trabajador[0]; //el arreglo de trabajadores
+			
+		int k=1;
 		
-		System.out.println("Ingrese su nombre");
-		nombre= scanner.next();
+		while(k>0) {
+			System.out.println("Ingrese su nombre");
+			nombre= scanner.next();
+			
+			System.out.println("Ingrese su salario bï¿½sico");
+			salario= scanner.nextDouble();
 		
-		System.out.println("Ingrese su salario básico");
-		salario= scanner.nextDouble();
+			
+			arr= Arrays.copyOf(arr, arr.length+1); //le estoy aÃ±adiendo una nueva casilla para guardar al nuevo objeto trabajador
+			arr[arr.length-1] = new Trabajador(nombre, salario);
+			
+			/*System.out.println("Ingrese el nï¿½mero de dï¿½as que trabajï¿½");
+			trabajador1.setDiasTrabajados(scanner.nextDouble());
+			trabajador1.Salario();*/ //tengo que preguntar el nombre del trabajador para buscarlo y modificar su atributo de salario
+			
+			k++; //ponerlo como if no hay mas trabajadores, entonces k=0 y se detiene el while
+		}
 		
-		Trabajador trabajador1 = new Trabajador(nombre, salario);
-		System.out.println("Ingrese el número de días que trabajó");
-		trabajador1.setDiasTrabajados(scanner.nextDouble());
-		trabajador1.Salario();
 	}
 
 }
