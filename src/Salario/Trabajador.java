@@ -1,16 +1,15 @@
 package Salario;
-import java.util.Scanner;
+import java.util.*;
 
-/*se quiere manejar la info de los proyectos de una empresa. Se sabe que se tienen 20 proyectos y de ellos se necesita la informacion de horas trabajadas por mes. Al final se necesita saber la cantidad de horas total por proyecto, cantidad de horas que se ha trabajado por mes, cantidad total de horas.
-construya una clase para manejar esta info. 
-arreglo de trabajadores con la clase que ya tenemos de trabajador
-métodos: crear, asignar, salario (tiene que buscar con el nombre (id) el trabajador en la otra clase), método buscar trabajador.*/
+/*métodos: crear, asignar, salario 
+ * (tiene que buscar con el nombre (id) el trabajador en la otra clase), método buscar trabajador.*/
 
 
-public class Trabajador {
+public class Trabajador{
 	private double salarioBasico;
 	private String nombre;
 	private double diasTrabajados;
+	static Trabajador[] trabajadores =new Trabajador[0];
 	Scanner scanner = new Scanner (System.in);
 	
 	
@@ -20,6 +19,21 @@ public class Trabajador {
 		
 	}
 	
+	
+	
+	public static Trabajador[] getTrabajadores() {
+		return trabajadores;
+	}
+
+
+
+	public static void setTrabajadores(Trabajador[] trabajadores) {
+		Trabajador.trabajadores = Arrays.copyOf(trabajadores, trabajadores.length);
+		
+	}
+
+
+
 	public double getSalarioBasico() {
 		return salarioBasico;
 	}
@@ -41,13 +55,24 @@ public class Trabajador {
 		this.nombre = nombre;
 	}
 	
-	public double Salario(){
+	public double Salario(String nombre){	
 		
-		double salario=(this.salarioBasico + this.diasTrabajados)/24;
-		System.out.println("El salario del trabajador es:"+ salario);
+		double dias=0;
+		double salario=0;
+		
+		System.out.println("Ingrese el n�mero de d�as que " + nombre + " trabajó");
+		dias=scanner.nextDouble();
+		
+		for (int i=0; i<trabajadores.length; i++) {
+			if (trabajadores[i].nombre==nombre) {
+				this.diasTrabajados= dias;
+				salario=(this.salarioBasico + this.diasTrabajados)/24;
+				System.out.println("El salario del trabajador " + nombre + " es: "+ salario);
+			}
+		}
+		
 		return salario;
+		
 	}
-	
-	
 	
 }
