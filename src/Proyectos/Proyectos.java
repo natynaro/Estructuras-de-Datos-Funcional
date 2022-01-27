@@ -3,6 +3,9 @@ import java.util.*;
 
 public class Proyectos {
 	
+	//metodo que devuelva el salario mínimo de los trabajadores
+	
+	//scanner no puede estar acá al parecer
 
 	private double horasTotal;
 	private int numProyect;
