@@ -79,10 +79,12 @@ public class MainTrabajador {
 			
 		System.out.println("Ingrese el nombre del trabajador que quiere eliminar");
 		nombre= scanner.next();
-		posicion= proyecto1.buscarTrabajador(nombre);
-		System.out.println(proyecto1.quitarTrabajador(posicion+1));
 		
+		posicion= proyecto1.buscarTrabajador(nombre); //(para el quitar normal)
+		System.out.println(proyecto1.quitarTrabajadorRepetido(nombre));
 		
+		System.out.println("El nombre que va primero alfabéticamente es: " + proyecto1.nombreMenor());
+		System.out.println("El nombre que va último alfabéticamente es: " + proyecto1.nombreMayor());
 	}
 }
 

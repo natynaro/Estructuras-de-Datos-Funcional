@@ -25,10 +25,10 @@ public class Proyecto {
 	//cuando en el main me dan el nombre, te devuelvo la posición en el vector del trabajador
 	public int buscarTrabajador(String nombre) {		
 	int k =0;
-		while(k<=trabajadores.length && !(trabajadores[k].getNombre().equals(nombre))) {
+		while(k<trabajadores.length && !(trabajadores[k].getNombre().equals(nombre))) {
 			k++;
 		}		
-		return (k<=trabajadores.length)? k: -1;
+		return (k<(trabajadores.length))? k: -1;
 	}
 
 	//setea en Trabajador el arreglo de meses
@@ -130,6 +130,8 @@ public class Proyecto {
 	//se puede ir corriendo las posiciones, desde la final con un for<---------------- en vez de la auxiliar que hice
 	
 	//método de eliminar un trabajador, que el arreglo se modifique de tamaño y de todo	
+	/*ahora asumir que hay nombres iguales, entonces a eliminar todos los que 
+	 * tengan ese mismo nombre*/
 	public String quitarTrabajador(int posicion) {
 		Trabajador[] aux= Arrays.copyOf(trabajadores, trabajadores.length-1); //va a tener 3 posiciones
 		
@@ -146,6 +148,15 @@ public class Proyecto {
 		}else {
 			return "Número de posición inválida";
 		}
+	}
+	public String quitarTrabajadorRepetido(String nombre) {
+		 
+		while(buscarTrabajador(nombre)!=-1) {
+			for(int k=buscarTrabajador(nombre); k<trabajadores.length; k++) {
+				trabajadores[k]=trabajadores[k+1];
+			}
+		}
+		return "Sequitaronlos trabajadores con ese nombre exitosamente";
 	}
 
 	//busca el mínimo salario entre los trabajadores y devuelve el número
@@ -164,9 +175,44 @@ public class Proyecto {
 				}}}
 		return a;
 	}
-	
-	//hacer un método que me imprima el arreglo de trabajadores (pregunta, que era algo de string to string y por alguna razon aparecia e el debug)
 
+	//hacer un método que me imprima el arreglo de trabajadores (pregunta, que era algo de string to string y por alguna razon aparecia e el debug)
+	public String toString() {
+		return "Proyecto [trabajadores=" + Arrays.toString(trabajadores) + "]";
+	}
+	
+	//usar elcompareto string 
+	/*The result is a negative integer if this String object lexicographically precedes 
+	 * the argument string. The result is a positive integer if this String object 
+	 * lexicographically follows the argument string. The result is zero if the strings 
+	 * are equal*/
+	
+	public String nombreMayor() {
+		String aux= trabajadores[0].getNombre();
+		int result= 0;
+		for (int i=0; i<trabajadores.length; i++) {
+				result=aux.compareTo(trabajadores[i].getNombre());
+				if(result<=0) {
+					aux=trabajadores[i].getNombre();
+				}
+			}
+		return aux;
+	}
+	
+	public String nombreMenor() {
+		String aux= trabajadores[0].getNombre();
+		int result= 0;
+		for (int i=0; i<trabajadores.length; i++) {
+				result=aux.compareTo(trabajadores[i].getNombre());
+				if(result>=0) {
+					aux=trabajadores[i].getNombre();
+				}
+			}
+		return aux;
+	}
+	
+	
+	
 }
 
 

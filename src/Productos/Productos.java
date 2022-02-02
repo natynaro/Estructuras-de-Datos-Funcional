@@ -5,6 +5,8 @@ public class Productos {
 	private int produccionTotal=0;
 	String nombre="";
 	
+	
+	
 	public Productos(int[] dias) {
 		this.produccionSemanal=dias;
 	}
