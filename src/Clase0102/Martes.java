@@ -49,10 +49,14 @@ public class Martes {
 	
 	//un método que solo ponga las vocales no repetidas
 	public static char[] vocalesNoRepetidas(String cadena){
-		char[] repetidas = vocalesProfe(cadena);
-		
-		
-		for(int i=0; i<repetidas.length; i++) {
+		StringBuffer repetidas= vocales(cadena);
+		StringBuffer resultado=new StringBuffer();
+		String repetida= resultado.toString();
+	
+		for(int i=0; i<repetidas.length(); i++){
+			if(repetida.contains(repetidas.charAt(i))){
+				resultado.append(repetidas.charAt(i));
+			}
 			
 		}
 		return null;
