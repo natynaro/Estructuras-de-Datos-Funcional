@@ -31,6 +31,16 @@ public class Proyecto {
 		return (k<(trabajadores.length))? k: -1;
 	}
 
+	//método buscar trabajador que también reciba de parámetro el index desde donde va a empezar a buscar
+	public int buscarTrabajadorIndex(String nombre, int posicion) {		
+		int k =0;
+			while(k<trabajadores.length && !(trabajadores[k].getNombre().equals(nombre))) {
+				k++;
+			}		
+			return (k<(trabajadores.length))? k: -1;
+		}
+
+	
 	//setea en Trabajador el arreglo de meses
 	public void cadaMes (String nombre, int mes, double dias){
 			
@@ -149,14 +159,17 @@ public class Proyecto {
 			return "Número de posición inválida";
 		}
 	}
+	
 	public String quitarTrabajadorRepetido(String nombre) {
-		 
-		while(buscarTrabajador(nombre)!=-1) {
-			for(int k=buscarTrabajador(nombre); k<trabajadores.length; k++) {
+			 
+		int index;
+		//método buscar trabajador que también reciba de parámetro el index desde donde va a empezar a buscar
+		while((index=buscarTrabajador(nombre))!=-1) {
+			for(int k=index; k<trabajadores.length; k++) {
 				trabajadores[k]=trabajadores[k+1];
 			}
 		}
-		return "Sequitaronlos trabajadores con ese nombre exitosamente";
+		return "Se quitaron los trabajadores con ese nombre exitosamente";
 	}
 
 	//busca el mínimo salario entre los trabajadores y devuelve el número
