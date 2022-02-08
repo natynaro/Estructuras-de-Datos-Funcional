@@ -4,7 +4,8 @@ import java.util.Arrays;
 import java.util.Date;
 
 public class Biblioteca {
-	
+	//libro tiene un codigo de 5 caracteres aleatorios, así, los ejemplares de ese libro tendrá el mismo codigo + otro caracter
+	//haz esos métodos
 	private Libro[] libros= new Libro[0];
 	private Usuario[] usuario= new Usuario[0];
 	private Prestamo[] prestamos= new Prestamo[0];
@@ -51,7 +52,7 @@ public class Biblioteca {
 	//crea un arreglo de ejemplares con los codigos de libros que pudo encontrar, para que así estos sean los prestados y a ellos les cambie su disponibilidad y cantidad y los añade alarreglo de prestamo
 	public boolean prestamo(String[] codigosLibros, String CC) {
 		
-		//verificar la disponibilidad de cada códigoy crear un arreglo de ejemplares
+		//verificar la disponibilidad de cada código y crear un arreglo de ejemplares
 		
 		boolean sePudo= false;
 		Ejemplar[] ejemplares= new Ejemplar[codigosLibros.length];
@@ -109,11 +110,10 @@ public class Biblioteca {
 	}
 	
 	//busca un libro con el código, llama al método de libro buscarEjemplar y devuelve el ejemplar disponible o si ninguno está disponible, si no encuentra en sí el libro, devuelve un no existe 
-	public Ejemplar buscarLibro(String codigo) {
+	public Ejemplar buscarLibro(String codigo) {//el  parametro debería ser el título
 		int i=0;
-		while(!libros[i].getCodigoLibro().equals(codigo)) {
+		while(i<libros.length && !libros[i].getCodigoLibro().equals(codigo))//este whilepuede ser optimizado
 			i++;
-		}
 		if(i<libros.length) {
 			return libros[i].buscarEjemplar();
 		}else {

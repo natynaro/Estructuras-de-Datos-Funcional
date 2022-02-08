@@ -8,7 +8,7 @@ public class MainTrabajador {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner scanner = new Scanner (System.in);
+		/*Scanner scanner = new Scanner (System.in);
 		Proyecto proyecto1= new Proyecto();
 		String nombre="";
 		double salario=0; //el b�sico	
@@ -85,7 +85,8 @@ public class MainTrabajador {
 		
 		System.out.println("El nombre que va primero alfabéticamente es: " + proyecto1.nombreMenor());
 		System.out.println("El nombre que va último alfabéticamente es: " + proyecto1.nombreMayor());
-	}
+	*/}
+		
 }
 
 

@@ -53,12 +53,12 @@ public class Martes {
 		StringBuffer resultado=new StringBuffer();
 		String repetida= resultado.toString();
 	
-		for(int i=0; i<repetidas.length(); i++){
+		/*for(int i=0; i<repetidas.length(); i++){
 			if(repetida.contains(repetidas.charAt(i))){
 				resultado.append(repetidas.charAt(i));
 			}
 			
-		}
+		}*/
 		return null;
 		
 	}
