@@ -1,5 +1,4 @@
 package Salario;
-import java.util.*;
 
 public class Trabajador{
 	

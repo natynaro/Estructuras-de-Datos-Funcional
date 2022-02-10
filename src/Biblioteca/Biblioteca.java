@@ -1,7 +1,9 @@
 package Biblioteca;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Random;
 
 public class Biblioteca {
 	//libro tiene un codigo de 5 caracteres aleatorios, así, los ejemplares de ese libro tendrá el mismo codigo + otro caracter
@@ -138,22 +140,76 @@ public class Biblioteca {
 	}
 		
 	//usa el constructor de libro con los datos que me dé éste método
-	public void addLibro(String titulo, String codigo, String autores, String editorial, String edicion, int cantDisponible) {
+	public void addLibro(String titulo, String autores, String editorial, String edicion, int cantDisponible) {
+		
 		this.libros=Arrays.copyOf(libros,(libros.length+1));
-		Ejemplar[] ejemplares= new Ejemplar[0]; //no tienen código pero bueno
+		Random random = new Random();
+		String codigo=new BigInteger(25, random).toString(32);
+		boolean condicion =true;
+		int k=0;
+		
+		if(libros.length!=0) {
+			while(condicion) {
+				while(k<libros.length && !codigo.equals(libros[k].getCodigoLibro())) k++;
+				if(k<libros.length) {
+					codigo=new BigInteger(25, random).toString(32);
+					k=0;
+				}else {
+					condicion= false;
+				}
+			}
+		}
+
+		Ejemplar[] ejemplares= new Ejemplar[0]; 
 		libros[(libros.length-1)]= new Libro(titulo, codigo, autores, editorial, edicion, ejemplares, cantDisponible, true);
 	}
 	
 	//Busca el libro con el codigo en el arreglo de biblioteca y añada a esa posicion un nuevo ejemplar con este código
-	public void addEjemplar(String codigolibro, String codigoEjemplar) {
+	public void addEjemplar(String codigolibro) {
 		int i=0;
-		while(i<libros.length && !libros[0].getCodigoLibro().equals(codigolibro)) {
-			i++;
+		Random random = new Random();
+		String bb=new BigInteger(25, random).toString(32);
+		String codigo= codigolibro + bb;
+		
+		if(libros.length!=0) {
+			while(i<libros.length && !libros[0].getCodigoLibro().equals(codigolibro)) {
+				i++;
+			}
+			if(i<libros.length) {//encontró el libro
+				
+				boolean condicion =true;
+				int j=0;
+				Ejemplar[] ejemplares= libros[i].getEjemplares();
+				
+				if(libros[i].getEjemplares().length!=0) {//si hay ejemplares voy a empezar a comparar
+					while(condicion){
+						while(j<libros[i].getEjemplares().length && !codigo.equals(ejemplares[j].getCodigoEjemplar())) j++;
+						if(j<ejemplares.length) {//voya volver a hacer un random y a volver a
+							codigo=codigolibro + new BigInteger(25, random).toString(32);
+							j=0;
+						}else {
+							String codigoEjemplar = codigolibro + codigo;
+							libros[i].addEjemplar(codigoEjemplar); //usa el método que tiene libro, debería haber otro else para cuando  me devuelve el libro no disponible		
+							condicion= false;
+						}
+					}	
+				}else {// si no hay ejemplares simplemente lo creo
+					codigo=new BigInteger(25, random).toString(32);
+					String codigoEjemplar = codigolibro + codigo;
+					libros[i].addEjemplar(codigoEjemplar);
+				}
+					
+			}else {//no hay libros con ese código
+				System.out.println("No hay ningún libro con este codigo");;
+			}
+		}else {
+			System.out.println("No hay ningún libro en la biblioteca,cree el libro antes de añadir ejemplar");;
 		}
-		if(i<libros.length) {
-			libros[i].addEjemplar(codigoEjemplar); //usa el método que tiene libro, debería haber otro else para cuando me devuelve el libro no disponible
-		}//else nada porque es un void
+		
+			
+			
 	}
+
 
 	//Busca el libro con el codigo en el arreglo de biblioteca y llame al metodo de eliminar ejemplares con este código
 	public void eliminarEjemplar(String codigolibro, String codigoEjemplar) {

@@ -1,4 +1,5 @@
 package Salario;
+//hacer elbanco y lo de empLimpieza
 
 public class EmpLimpieza extends Trabajador {
 	 private float norma;
