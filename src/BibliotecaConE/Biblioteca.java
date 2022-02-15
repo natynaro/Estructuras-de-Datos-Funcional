@@ -1,4 +1,4 @@
-package Biblioteca;
+package BibliotecaConE;
 
 import java.math.BigInteger;
 import java.util.Arrays;
@@ -45,15 +45,15 @@ public class Biblioteca {
 	//métodos que pidió a profe
 	
 	//crea un arreglo de ejemplares con los codigos de libros que pudo encontrar, para que así estos sean los prestados y a ellos les cambie su disponibilidad y cantidad y los añade alarreglo de prestamo
-	public void prestamo(String[] codigosLibros, String CC) throws ExceptionLibro {
+	public boolean prestamo(String[] codigosLibros, String CC) {
 		
 		//verificar la disponibilidad de cada código y crear un arreglo de ejemplares
 		
 		boolean sePudo= false;
 		Ejemplar[] ejemplares= new Ejemplar[codigosLibros.length];
 		for(int i=0; i<codigosLibros.length;i++) {
-			if(buscarLibroE(codigosLibros[i]).isExistenciaLibro()) {
-				ejemplares[i]= buscarLibroE(codigosLibros[i]);
+			if(buscarLibro(codigosLibros[i]).isExistenciaLibro()) {
+				ejemplares[i]= buscarLibro(codigosLibros[i]);
 				sePudo=true;
 			}
 		}
@@ -64,7 +64,7 @@ public class Biblioteca {
 			Date fechaPrestamo= new Date();
 			Date fechaDevolucion= new Date(fechaPrestamo.getTime()+604800000);
 			
-			this.prestamos[(prestamos.length-1)]=new Prestamo(buscarUsuarioE(CC), ejemplares,fechaPrestamo, fechaDevolucion);
+			this.prestamos[(prestamos.length-1)]=new Prestamo(buscarUsuario(CC), ejemplares,fechaPrestamo, fechaDevolucion);
 			
 			//cambiar la disponibilidad en los ejemplares y la cantidad disponible en libro
 			
@@ -72,32 +72,35 @@ public class Biblioteca {
 				ejemplares[i].setDisponibilidad(false);
 				ejemplares[i].setCantDisponible((ejemplares[i].getCantDisponible()-1));
 			}
+			return true;
 		
-		}else { throw new ExceptionLibro("No se pudo realizar el préstamo");	
+		}else {
+			return false;	
 		}
 		
 	}
 	
 	//busca el usuario con la cedula,y cuando coincida ese usuario con el usuario de algúnprestamo,elimina el prestamo y pone disponible los ejemplares y +cantidades
-	public void devolucion(String CC) throws ExceptionLibro {
-		Usuario usuarioDevolver= buscarUsuarioE(CC);
-		
-		int i=0;
-		while(i<prestamos.length && !prestamos[i].getUsuario().equals(usuarioDevolver)) {
-			i++;
-		}
-		if(i<prestamos.length) {
-			// setear la disponibilidad y cantidad
-			Ejemplar[] ejemplares= prestamos[i].getLibros();
-			for(int k=0; k<ejemplares.length;k++) {
-				ejemplares[k].setDisponibilidad(true);
-				ejemplares[k].setCantDisponible((ejemplares[i].getCantDisponible()+1));
+	public void devolucion(String CC) {
+		Usuario usuarioDevolver= buscarUsuario(CC);
+		if(!usuarioDevolver.getNombre().equals("no existe el usuario")) {
+			int i=0;
+			while(i<prestamos.length && !prestamos[i].getUsuario().equals(usuarioDevolver)) {
+				i++;
 			}
-			//eliminar el prestamo
-			for(int k=i; k<prestamos.length; k++) {
-				prestamos[k]=prestamos[k+1];
+			if(i<prestamos.length) {
+				// setear la disponibilidad y cantidad
+				Ejemplar[] ejemplares= prestamos[i].getLibros();
+				for(int k=0; k<ejemplares.length;k++) {
+					ejemplares[k].setDisponibilidad(true);
+					ejemplares[k].setCantDisponible((ejemplares[i].getCantDisponible()+1));
+				}
+				//eliminar el prestamo
+				for(int k=i; k<prestamos.length; k++) {
+					prestamos[k]=prestamos[k+1];
+				}
+				this.prestamos=Arrays.copyOf(prestamos, (prestamos.length-1));
 			}
-			this.prestamos=Arrays.copyOf(prestamos, (prestamos.length-1));
 		}
 	}
 	
@@ -127,14 +130,16 @@ public class Biblioteca {
 	}
 	
 	//Con la cédula buscar el usuario en el arreglo de usuarios que tiene biblioteca y devuelve el usuario en tal de existir
-	public Usuario buscarUsuarioE(String CC) throws ExceptionLibro {
+	public Usuario buscarUsuario(String CC) {
 		int i=0;
 		while(i<usuario.length && !usuario[i].getCC().equals(CC)) {
 			i++;
 		}
 		if(i<usuario.length) {
 			return usuario[i];
-		}else { throw new ExceptionLibro("El usuario no existe");
+		}else {
+			Usuario noExiste = new Usuario("no existe el usuario", "", "", "");
+			return noExiste;
 		}
 		
 	}
