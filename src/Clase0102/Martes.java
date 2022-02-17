@@ -54,11 +54,11 @@ public class Martes {
 		String repetida= resultado.toString();
 	
 		for(int i=0; i<repetidas.length(); i++){
-			if(repetida.contains(repetidas.charAt(i))){
+			//if(repetida.contains(repetidas.charAt(i))){
 				resultado.append(repetidas.charAt(i));
 			}
 			
-		}
+		//}
 		return null;
 		
 	}
