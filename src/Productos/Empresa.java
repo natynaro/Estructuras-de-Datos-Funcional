@@ -1,10 +1,5 @@
 package Productos;
 
-//hay un tipo de dato enum y cómo que puedo utilizarlos para los días de la semana
-/*estudiar el enum, lo de los dias de la semana, 
- * el metodo de no repetir vocales, todo lo de 
- * productos que no hice*/
-
 public class Empresa {
  private Productos[] productos= new Productos[10];
  
@@ -45,7 +40,6 @@ public class Empresa {
 	 
  }
 
- 
  public void nuevoProducto(int posicion) {
 	 int[] dias=new int[0];
 	 productos[posicion]=new Productos(dias);
@@ -58,8 +52,7 @@ public class Empresa {
 		 }
 	return (i<10 && i>-1)? i: -1;
 }
- 
- 
+  
  public String llenadoDias(String nombre, String dia, int dias) {
 	 if(buscarProducto(nombre)!=-1) {
 		 int[] semana=productos[buscarProducto(nombre)].getProduccionSemanal();

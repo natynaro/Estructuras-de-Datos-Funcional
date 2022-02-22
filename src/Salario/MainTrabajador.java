@@ -8,7 +8,7 @@ public class MainTrabajador {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner scanner = new Scanner (System.in);
+		/*Scanner scanner = new Scanner (System.in);
 		Proyecto proyecto1= new Proyecto();
 		String nombre="";
 		double salario=0; //el b�sico	
@@ -85,7 +85,20 @@ public class MainTrabajador {
 		
 		System.out.println("El nombre que va primero alfabéticamente es: " + proyecto1.nombreMenor());
 		System.out.println("El nombre que va último alfabéticamente es: " + proyecto1.nombreMayor());
-	}
+	*/
+		Trabajador t= new Trabajador("Angel", 3000000);
+		Trabajador e=new EmpLimpieza("Angela", 3000000, 20, 20);
+		Trabajador[] trabajadores=new Trabajador[2];
+		trabajadores[0]=t;
+		trabajadores [1]=e;
+		for (int i=0;i<trabajadores.length;i++) {
+			if (trabajadores[i] instanceof EmpLimpieza) System.out.print("Empleado de Limpieza: " + trabajadores[i].getNombre());
+			else System.out.print("Obrero: " + trabajadores[i].getNombre());
+		System.out.println(trabajadores[i].getNombre()+"\t"+ trabajadores[i].getSalarioBasico());
+	
+		}
+		
+}
 }
 
 
