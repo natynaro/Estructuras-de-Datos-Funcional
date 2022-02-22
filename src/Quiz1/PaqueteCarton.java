@@ -7,3 +7,4 @@ public class PaqueteCarton extends PaqueteReciclaje{
 	}
 	
 }
+                                                                                    
