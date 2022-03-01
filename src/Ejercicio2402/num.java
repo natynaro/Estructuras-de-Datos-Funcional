@@ -1,46 +1,64 @@
 package Ejercicio2402;
 
+import java.util.*;
+
+import EjemploExcepcion.EValorNegativo;
+
 public class num {
+	
 	public num() {
 		
 	}
+	
 	public static int mayor(int[] array) {
 		int sumaActual;//1
-		int sumaMayor=0;//2
-		
-		
-		for(int i=0; i<array.length; i++) {//2n+3
-			sumaActual=array[i];//1
-			for(int j=i+1;j<array.length; j++) {//n^2+4n+3
-				sumaActual+=array[j];//n^2-n
-				if(sumaActual>sumaMayor) {//n^2-n/2
-					sumaMayor=sumaActual;//n^2-n/2
+		int sumaMayor=0;//2	
+		for(int i=0, j=i+1; i<array.length; i++) {//
+			sumaActual=array[i];
+			for(j=i+1;j<array.length; j++) {//
+				sumaActual+=array[j];//
+				if(sumaActual>sumaMayor) {//
+					sumaMayor=sumaActual;//
 				}
 			}
 			
 		}
 		return sumaMayor;//1
-	}//O(3N^2+6N+11)=O(N^2)
-	
+	}
 	
 	public static int mayor2(int[] array) {
 		
-		int  j=1, sumaActual=array[0], sumaMayor=0;//8
-		for(int i=0; j<array.length; i++ ){
-			if(sumaMayor<sumaActual) {
-				do{
-					sumaMayor=sumaActual;
-					sumaActual+=array[j];
-					j++;
-				}while(sumaMayor<sumaActual);
+		int sumaActual=0, sumaMax=0;//4
+		for(int i=0, j=0; j< array.length; j++) {//2n+5
+			sumaActual += array[j];//2n
+			if(sumaActual>sumaMax) {
+				sumaMax= sumaActual;
+			}else if(sumaActual<0){//n
+				i=j+1;//2n
+				sumaActual=0;//2n
 			}
-			
+		}
+		return sumaMax;//1
+		}//O(9N+9)= O(N)
+				
+	public static int subsecuenciaMax(int [] a) {
+		
+		int sumaActual=0, sumaMax=0, secIni, secFin;// 6
+		for(int i=0, j=0; j< a.length; j++) {//2N+5
+			sumaActual += a[j];//2N
+			if(sumaActual>sumaMax) {//N
+				sumaMax= sumaActual;//N
+				secIni=i;//N
+				secFin=j;//N
+			}else if(sumaActual<0){
+				i=j+1;
+				sumaActual=0;
+			}
 		}
 		
-		
-		return sumaMayor;
-	}
-	
+		return sumaMax;//1
+		}//O(8N+11)
+			
 	public static int subsecuenciaSumaMaxima (int [] a)
 	{
 	 int sumaActual; //1
@@ -61,4 +79,63 @@ public class num {
 		 }
 	 	return sumaMax;//1
 	 }
+	public static long factorial(long n) throws EValorNegativo{
+		if(n>=0 && Math.round(n)==n){
+			if (n==1||n==0) {
+				return 1;
+			}else return n*factorial(n-1);
+		} else throw new EValorNegativo("El numero debe ser mayor a 0 y entero, para poder realizar el factorial");
+		
+	}
+	
+	public static long suma(long n) throws EValorNegativo{
+		if(n>=0 && Math.round(n)==n){
+			if (n==1) {
+				return 1;
+			}else return n+suma(n-1);
+		}else throw new EValorNegativo("El numero debe ser mayor a 0 y entero, para poder realizar la suma");
+		
+	}
+	
+	public static long sumaA(long[] n) throws EArrayVacio {
+		long suma=0;
+		if(n.length!=0 || n!=null) {
+			int pos= n.length-1;
+			suma= sumaAR(n, pos);
+			return suma;	
+		}else {
+			throw new EArrayVacio();
+		}
+		
+	}
+	
+	public static long sumaAR(long[] n, int pos){
+		
+		if(pos==0) {
+			return n[0];
+		}else {
+			return n[pos]+sumaAR(n, pos-1);
+		}
+		
+	}
+	
+	public static long max(long[] n) throws EArrayVacio{
+		long max=0;
+		if(n.length!=0 || n!=null) {
+			int pos= n.length-1;
+			max= maxR(n, pos);
+			return max;	
+		}else {
+			throw new EArrayVacio();
+		}
+	}
+	public static long maxR(long[] n, int pos) {
+		if(pos==0) {
+			return n[0];
+		}else {
+			return Math.max(n[pos], maxR(n, pos-1));
+		}
+		
+	}
+
 }
