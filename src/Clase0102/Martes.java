@@ -56,6 +56,8 @@ public class Martes {
 		for(int i=0; i<repetidas.length(); i++){
 			//if(repetida.contains(repetidas.charAt(i))){
 				resultado.append(repetidas.charAt(i));
+				
+				
 			}
 			
 		//}

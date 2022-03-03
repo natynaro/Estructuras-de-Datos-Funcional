@@ -137,5 +137,84 @@ public class num {
 		}
 		
 	}
-
+	
+	// Recursiva Cuando una cadena es que polindromo o no.
+	
+	public static boolean polindromoInternet(String cadena) {
+		cadena = cadena.toLowerCase().replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o")
+				.replace("ú", "u").replace(" ", "").replace(".", "").replace(",", "");
+		String invertida= new StringBuilder(cadena).reverse().toString();
+		if(cadena==invertida) {
+			return true;
+		}else return false;
+	}
+	public static boolean palindromo(String cadena) {
+		cadena = cadena.toLowerCase().replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o")
+				.replace("ú", "u").replace(" ", "").replace(".", "").replace(",", "");
+		return palindromoR(cadena);
+	}
+	public static boolean palindromoR(String cadena) {
+		
+		if(cadena.length()==1) {
+			return true;
+			
+		}else{
+			char a= cadena.charAt(0);
+			char b= cadena.charAt(cadena.length()-1);
+			if(a==b) {
+				return palindromoR(cadena.substring(1, (cadena.length()-1)));
+			}else return false;
+			
+		}
+		
+	}
+	  
+	 //Hacer dos métodos, uno par y otro impar que sean booleanos (recursiva)
+	
+	
+	public static boolean esParR(int num) {
+		double numm= (double)num/2;
+		if(numm%2==0) {
+			return esParR((int)numm);
+		}else if(numm==1){
+			return true;
+		}else return false;
+		
+	} 
+	public static boolean esImparR(int num) {
+		int resta=num-2;
+		if(resta==1) {
+			return true;
+		}else if(resta==0) {
+			return false;
+		}else return esImparR(resta);
+		
+	} 
+	
+	public static int recursivo(int[] v, int i1, int i2) {
+		int aux1, aux2;
+		if(i1==i2) return v[i1];
+		else {
+			aux1= recursivo(v, i1, ((i1+i2)/2));
+			aux2= recursivo(v, (((i1+i2)/2))+1, i2);
+			if (aux1>aux2) return aux1; else return aux2;
+		}
+		
+	}  
+	
+	
+	
+	//metodo recursivo que devuelva la inversa de una cadena
+	
+	public static String inversa(String cadena) {
+		return inversaR(cadena, cadena.length()-1);
+	}
+	public static String inversaR(String cadena, int pos) {
+		String result="";
+		if(pos>=0) {
+			result= cadena.charAt(pos)+ inversaR(cadena, pos-1);
+		}
+		return result;
+		
+	}
 }
