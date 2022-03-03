@@ -217,4 +217,30 @@ public class num {
 		return result;
 		
 	}
+	
+	
+	//suma arreglos dividir y vencer
+	
+	
+	public static long sumaAD(long[] n) throws EArrayVacio {
+		long suma=0;
+		if(n.length!=0 || n!=null) {
+			int pos= n.length-1;
+			suma= sumaADR(n, pos);
+			return suma;	
+		}else {
+			throw new EArrayVacio();
+		}
+		
+	}
+	
+	public static long sumaADR(long[] n, int pos){
+		
+		if(pos==0) {
+			return n[0];
+		}else {
+			return n[pos]+sumaADR(n, pos-1);
+		}
+		
+	}
 }
