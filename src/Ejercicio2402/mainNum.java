@@ -5,7 +5,22 @@ import EjemploExcepcion.EValorNegativo;
 public class mainNum {
 
 	public static void main(String[] args) throws EValorNegativo, EArrayVacio {
-		try {
+		
+		long time_start=System.currentTimeMillis();
+		System.out.println(time_start);
+		System.out.println(num.fibonacciR(45));
+		long time_end=System.currentTimeMillis();
+		System.out.println(time_end);
+		System.out.println("Se demoró el recur: "+(-time_start+time_end));
+		
+		time_start=System.currentTimeMillis();
+		System.out.println(time_start);
+		System.out.println(num.fibonacciIter(45));
+		time_end=System.currentTimeMillis();
+		System.out.println(time_end);
+		System.out.println("Se demoró el iter: "+(-time_start+time_end));
+		
+		/*try {
 			int[] numm= {-2,3, 5, 4, 11, -4, 13, -5, 200, 7, -10, 8, 44};
 			
 			
@@ -35,11 +50,15 @@ public class mainNum {
 			System.out.println(num.recursivo(numm, 0, 12)); //devuelve el myor
 			System.out.println(num.inversa(cadenaNoP));
 			System.out.println(num.inversa(cadenaP));
+			int[] hi= {3,7,0,1};
+			System.out.println(num.sumaAD(hi));
+			
+			
 			
 			
 		}catch (EValorNegativo e){
 			System.out.println(e.getMessage());
-		}
+		}*/
 		
 		
 	}

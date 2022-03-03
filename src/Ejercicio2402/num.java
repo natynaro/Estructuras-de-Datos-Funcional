@@ -222,25 +222,44 @@ public class num {
 	//suma arreglos dividir y vencer
 	
 	
-	public static long sumaAD(long[] n) throws EArrayVacio {
+	public static int sumaAD(int[] n) throws EArrayVacio {
 		long suma=0;
 		if(n.length!=0 || n!=null) {
 			int pos= n.length-1;
-			suma= sumaADR(n, pos);
-			return suma;	
+			return (int) (suma= sumaADR(n, 0, pos));
 		}else {
 			throw new EArrayVacio();
 		}
 		
 	}
 	
-	public static long sumaADR(long[] n, int pos){
-		
-		if(pos==0) {
-			return n[0];
+	public static int sumaADR(int[] n, int i1, int i2){
+		int aux1, aux2;
+		if(i1==i2) {
+			return n[i1];
 		}else {
-			return n[pos]+sumaADR(n, pos-1);
+			aux1=sumaADR(n, i1, ((i2+i1)/2));
+			aux2=sumaADR(n,((i2+i1)/2)+1,i2 );;
+			return aux1+aux2;
 		}
+		
+	}
+	
+	
+	public static long fibonacciIter(long n) {
+		long anterior=1;
+		long actual=1;
+		for(int i=1; i<n; i++) {
+			long tempAnterior=anterior;
+			anterior=actual;
+			actual+=anterior;
+		}return actual;
+	}
+	
+	public static long fibonacciR(long n) {
+		if(n==0||n==1) {
+			return n;
+		}return fibonacciR(n-1)+fibonacciR(n-2);
 		
 	}
 }
