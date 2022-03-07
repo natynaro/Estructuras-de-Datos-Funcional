@@ -1,27 +1,23 @@
 package EjercicioRectangulo;
 import java.util.Scanner;
+import java.io.*;
 
-public class MainRectangulo {
+public class MainRectangulo implements Serializable{
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Scanner scanner = new Scanner (System.in);
-		Rectangulo ejemplo = new Rectangulo();
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		
-		double altura, ancho;
+		Rectangulo r= new Rectangulo();
 		
-		System.out.println("Escriba la altura del rectángulo en metros");
-		altura = scanner.nextDouble();
-		ejemplo.setAltura(altura);
+		r.setAltura(40);
+		r.setAncho(1);
+		r.guardarFichero();
+		
+		System.out.println(r.toString());
+		
+		//Si tenemos info en administrador (osea, en cada array atributo), correrlo, guardar esa info y ya despues poner el cargar ficheros dentro de admin
+		
+		
 	
-		
-		System.out.println("Escriba el ancho del rectángulo en metros");
-		ancho = scanner.nextDouble();
-		ejemplo.setAncho(ancho);
-		
-		System.out.println("El área del rectángulo en metros cuadrados: " + ejemplo.calcularArea() + 
-				" y el perímetro en metros es: " + ejemplo.calcularPerimetro() );
-
 	}
 
 }
