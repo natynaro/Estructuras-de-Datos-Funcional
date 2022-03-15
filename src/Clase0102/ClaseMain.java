@@ -10,6 +10,8 @@ public class ClaseMain {
 		System.out.println("Igrese la palabra que quieres saber las vocales");
 		palabra= scanner.next();
 		System.out.println(Martes.vocales(palabra));
+		palabra.substring(0, 0)
 	}
+	
 
 }
