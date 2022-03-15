@@ -1,5 +1,6 @@
 package Ejercicio2402;
 
+import java.math.BigInteger;
 import java.util.*;
 
 import EjemploExcepcion.EValorNegativo;
@@ -262,4 +263,143 @@ public class num {
 		}return fibonacciR(n-1)+fibonacciR(n-2);
 		
 	}
+	
+	/*variables que guarden info anterior
+	crear un metodo fibonacci que la recursividad no esté tan larga
+	torres de hanoi
+	 */
+	
+	
+	public static int[] hanoi(int n) {
+		int[]origen= llenadoHanoi(n-2);;
+		int[]auxiliar= new int[0]; 
+		int[]llegada= new int[0];
+		return hanoiR(n, origen,auxiliar,llegada);
+		
+	}
+	public static int[] hanoiR(int m, int[]origen,int[]auxiliar,	int[]llegada) {
+		llegada=Arrays.copyOf(llegada, llegada.length+1);
+		auxiliar=Arrays.copyOf(auxiliar, auxiliar.length+1);
+		if(m==1) {
+			mover(origen,llegada);
+			origen=Arrays.copyOf(origen, origen.length-1);
+			llegada=Arrays.copyOf(llegada, llegada.length+1);
+			llegada[llegada.length-1]=1;
+			return llegada;
+		}
+		else {
+			llegada=mover(origen,llegada);
+			origen=Arrays.copyOf(origen, origen.length-1);
+			auxiliar= mover(llegada,auxiliar);
+			return hanoiR(m-1, origen, auxiliar, llegada);
+		}	
+	}
+	public static int[] mover( int[]origen, int[]llegada) {
+		llegada=Arrays.copyOf(llegada, llegada.length+1);
+		llegada[llegada.length-1]=	origen[origen.length-1];
+		return llegada;
+	}
+	
+	public static long fibonacciNormal(long n) {
+		return fibonacciRNormal((int) n, 1, 1);
+	}
+	
+	public static long fibonacciRNormal(int n, long ant, long act) {
+		if(n==0) {
+			return act;
+		}else {
+			long aux=ant;
+			ant=act;
+			act+=aux;
+			return fibonacciRNormal(n-1, ant, act);
+		}
+		
+		
+	}
+	
+	public static long fibonacciFast(long n) {
+		int actual=(n==0)?0:1;
+		return fibonacciFastR((int) n, 0, actual);
+	}
+	public static long fibonacciFastR(int n, long ant, long act){
+		if(n<=1)return act;
+		return fibonacciFastR(n-1, act, act+ant);
+	}
+	
+	
+	public static int[] llenadoHanoi(int n) {
+		int[] result=new int[n];
+		for(int i=0; i<n; i++) {
+			result[i]= i+1;
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	public static BigInteger fibonacciBig(int n) {
+		int actual=(n==0)?0:1;
+		return fibonacciBigR(n, new BigInteger("0"), new BigInteger(Integer.toString(actual)));
+	}
+	public static BigInteger fibonacciBigR(int n, BigInteger ant, BigInteger act) {
+		if(n<=1) {
+			return act;
+		}
+		
+		return fibonacciBigR(n-1, act, new BigInteger (act.toString()).add(ant));
+	}
+	
+	
+	/*public static boolean esParR(int num) {
+		double numm= (double)num/2;
+		if(numm%2==0) {
+			return esParR((int)numm);
+		}else if(numm==1){
+			return true;
+		}else return false;
+		
+	} */
+	//numeros pares
+	
+	public static int[] pares(int[] array) {
+		return paresR(0, array);
+	}
+	
+	public static int[] paresR(int pos, int[]array) {
+		if(pos==array.length-1) {
+			if(array[pos]%2==0||array[pos]%-2==0) {
+				return array;
+			}else return Arrays.copyOf(array, array.length-1);
+		}else {
+			if(array[pos]%2==0||array[pos]%-2==0) {
+				return paresR(pos+1,array);
+			}else {
+				
+				for(int i=0, d=1; d<array.length;i++) {
+					array[d]=array[i];
+					d++;
+				}
+				return paresR(pos,Arrays.copyOf(array, array.length-1));
+			}
+		}
+	}
+	public static int cantPar(int[]a) {
+		return cantParR(0,a);
+	}
+	public static int cantParR(int pos, int[]a) {
+		if(pos==a.length) {
+			return 0;
+		}
+		if(a[pos]%2==0||a[pos]%-2==0) {
+			return 1+cantParR(pos+1,a);
+		}
+		return cantParR(pos+1,a);
+	}
+	//sumar matriz aera recursivas
+	
+	
+	
 }
