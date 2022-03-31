@@ -1,5 +1,6 @@
 package ClaseCompares;
 
+
 public class Persona implements Comparable<Persona>{
 	
 	private String nomb;

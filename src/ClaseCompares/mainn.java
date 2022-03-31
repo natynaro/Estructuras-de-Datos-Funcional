@@ -4,10 +4,15 @@ package ClaseCompares;
 public class mainn {
 	public static void main(String[] args) {
     Persona p1= new Persona("Pedro", 24);
-    Persona p2= new Persona("oscar", 21);
+    Persona p2= new Persona("Oscar", 21);
     Persona p3= new Persona("Marcela", 20);
     Persona p4= new Persona("Andres", 26);
-    Persona[] listaP= {p1, p2, p3, p4};
+    Persona p5= new Persona("Andres", 20);
+    Persona p6= new Persona("Marcela", 28);
+    Persona p7= new Persona("Pedro", 50);
+    
+    
+    Persona[] listaP= {p1, p2, p3, p4, p5, p6, p7};
     Persona[] listaPp= (Persona[]) Persona.bubbleSort(listaP);
     Persona.printLista(listaPp);
     
