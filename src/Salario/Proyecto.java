@@ -42,7 +42,7 @@ public class Proyecto {
 
 	
 	//setea en Trabajador el arreglo de meses
-	public void cadaMes (String nombre, int mes, double dias){
+	/*public void cadaMes (String nombre, int mes, double dias){
 			
 		int posicion= buscarTrabajador(nombre);		
 		trabajadores[posicion].nuevoMes(mes, dias);
@@ -173,7 +173,7 @@ public class Proyecto {
 	}
 
 	//busca el mínimo salario entre los trabajadores y devuelve el número
-	public double salarioMinimo() {
+	/*public double salarioMinimo() {
 		
 		double[] aux= trabajadores[0].getSalario();
 		double a=aux[0];
