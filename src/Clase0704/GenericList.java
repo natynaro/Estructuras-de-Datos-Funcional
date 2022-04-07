@@ -5,6 +5,31 @@ public class GenericList <T extends Comparable<T>>{
     class Nodo {
         T info;
         Nodo sig;
+        public Nodo() {
+        	info=null;
+        	sig=null;
+        }
+        public Nodo(T info) {
+        	this.info=info;
+        	sig=null;
+        }
+        public Nodo(T info, Nodo nodo) {
+        	this.info=info;
+        	sig=nodo;
+        }
+        
+        public T getInfo() {
+        	return info;
+        }
+        public void setInfo(T into) {
+        	info=into;
+        }
+        public Nodo getNodo() {
+        	return sig;
+        }
+        public void setNodo(Nodo into) {
+        	sig=into;
+        }
     }
     
     private Nodo inicio;
@@ -12,7 +37,22 @@ public class GenericList <T extends Comparable<T>>{
     public GenericList() {
         inicio=null;
     }
-      
+    public GenericList(Nodo nodo) {
+        inicio=nodo;
+    }
+    
+    public void addFirst(T x) {
+    	Nodo nuevo = new Nodo();
+    	if (inicio!=null) {
+    		nuevo= new Nodo(inicio.getInfo(), inicio.getNodo());
+            inicio=nuevo;
+        } else {	
+        	inicio= new Nodo(x);
+    	}
+    	inicio.setInfo(x);
+    	inicio.setNodo(nuevo);
+    }
+     
     void insertar(T x)
     {
         Nodo nuevo = new Nodo ();

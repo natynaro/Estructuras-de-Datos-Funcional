@@ -7,7 +7,7 @@ import ClaseCompares.Persona;
 public class mainTarea {
 	public static void main(String[] args) {
 		
-		/*System.out.println("\n"+ "Array original:");
+		System.out.println("\n"+ "Array original:");
 		Comparable arr[] = {64, 34, 25, 12, 22, 11, 90, 22, 64};
        for(int i=0; i<arr.length;i++) {
     	   System.out.print(arr[i]+ " - ");
@@ -15,10 +15,10 @@ public class mainTarea {
        
        
        System.out.println("\n"+ "Array ordenado:");
-       Comparable Ordenado[]= tarea.selectionSort(arr);
+       Comparable Ordenado[]= Busqueda.insertSortTarea(arr);;
        for(int i=0; i<Ordenado.length;i++) {
     	   System.out.print(Ordenado[i]+ " - ");
-       }*/
+       }
 		
        /*
        System.out.println("\n"+ "Array duplicados No Ordenados:");
@@ -51,7 +51,7 @@ public class mainTarea {
     	  System.out.println("El número fue encontrado en la posición: " + (a2+1));
       }else   System.out.println("El número no fue encontrado ");*/
        
-       
+       /*
        
        Ej ej= new Ej(new Persona("Zrnesto", 30));
        Persona e1= (Persona) ej.getObj();
@@ -62,7 +62,7 @@ public class mainTarea {
        Genericidad<Persona> ej2=new Genericidad<Persona>(new Persona("Ernesto", 30));
        Persona e= ej2.getObj();
        System.out.println(e.getNomb());
-       System.out.println(ej2.min(new Persona("Humberto",25)));
+       System.out.println(ej2.min(new Persona("Humberto",25)));*/
 	}
 	
 	
