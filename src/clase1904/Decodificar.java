@@ -4,7 +4,7 @@ import java.util.*;
 public class Decodificar {
 	/*la pila acumula mientras se cumpla la condicion de no encontrar vocales. cuando se deja de cumplir, lo vamos vaciando hacia el string resultado */
 	public static StringBuilder decodificar(String oracion) { 
-		String vocales= "AÀaàEÈeèIÌiìOÒoòUÙuù";
+		String vocales= "AÀaàEÈeèIÌiìOÒoòUÙuùÁáÉéÍíÓóÚú";
 		Stack<String> caracteres= new Stack();
 		StringBuilder resultado= new StringBuilder();
 		int	k=0;

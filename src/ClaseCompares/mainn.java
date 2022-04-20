@@ -1,5 +1,6 @@
 package ClaseCompares;
 
+import java.util.*;
 
 public class mainn {
 	public static void main(String[] args) {
@@ -11,8 +12,15 @@ public class mainn {
     Persona p6= new Persona("Marcela", 28);
     Persona p7= new Persona("Pedro", 50);
     
+    PriorityQueue a= new PriorityQueue();
+    PriorityQueue<Persona> pq= new PriorityQueue<Persona>(a.comparator());
+     
+    while (!pq.isEmpty()) {
+    	System.out.println(pq.poll());
+    }
     
-    Persona[] listaP= {p1, p2, p3, p4, p5, p6, p7};
+    
+   /* Persona[] listaP= {p1, p2, p3, p4, p5, p6, p7};
     Persona[] listaPp= (Persona[]) Persona.bubbleSort(listaP);
     Persona.printLista(listaPp);
     
@@ -22,7 +30,7 @@ public class mainn {
     //insertSort
     
     Persona[] listaP3= (Persona[]) Persona.insertSort(listaP);;
-    Persona.printLista(listaP3);
+    Persona.printLista(listaP3);*/
     
 	}
 }

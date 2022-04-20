@@ -36,17 +36,18 @@ public class Persona implements Comparable<Persona>{
 
 	@Override
 	public int compareTo(Persona o) {
-		
-		return (this.nomb.compareTo(o.getNomb()));
+		int dif= edad-o.edad;
+		if(dif!=0) return dif;
+		return this.nomb.compareTo(o.getNomb());
 	}
-	public int compareTo2(Persona o) {
+	/*public int compareTo2(Persona o) {
 		//que si el nombre esta igual o la iedad igual seguir comparando letras
 		if(edad-o.getEdad()==0) {
 			return 0;
 		}
 		return edad;
 		
-	}
+	}*/
 	
 	public static Comparable[] bubbleSort(Comparable[] arr)
     {
@@ -102,3 +103,6 @@ public class Persona implements Comparable<Persona>{
 		}
 	}
 }
+
+ /*HYA FOTOS DE COMPARATOR PARA ORDENAR LAS PRORITY QUEUE*/
+
