@@ -1,24 +1,20 @@
-package ClaseCompares;
+package Clase2104;
 
 
 public class Persona implements Comparable<Persona>{
 	
 	private String nomb;
 	private int edad;
-	private long turno;
+	private final int turno;
 	private String estado;
 	
-	public Persona(String nomb, int edad) {
+	public Persona(String nomb, int edad, int turno, String estado) {
+		
 		super();
 		this.nomb = nomb;
 		this.edad = edad;
-	}
-	public Persona(String nomb, int edad, int i, String a) {
-		super();
-		this.nomb = nomb;
-		this.edad = edad;
-		this.turno=i;
-		this.estado=a;
+		this.turno = turno;
+		this.setEstado(estado);
 	}
 	
 	public String getNomb() {
@@ -45,6 +41,9 @@ public class Persona implements Comparable<Persona>{
 
 	@Override
 	public int compareTo(Persona o) {
+		
+		
+		
 		int dif= edad-o.edad;
 		if(dif!=0) return dif;
 		return this.nomb.compareTo(o.getNomb());
@@ -111,19 +110,18 @@ public class Persona implements Comparable<Persona>{
 			
 		}
 	}
-	public long getTurno() {
+
+	public int getTurno() {
 		return turno;
 	}
-	public void setTurno(long turno) {
-		this.turno = turno;
-	}
+
 	public String getEstado() {
 		return estado;
 	}
+
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
 }
 
  /*HYA FOTOS DE COMPARATOR PARA ORDENAR LAS PRORITY QUEUE*/

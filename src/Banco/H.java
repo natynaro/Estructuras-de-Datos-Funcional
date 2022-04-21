@@ -1,3 +1,5 @@
+package Banco;
+
 //ME DICE QUE NO LE DA PARA COMPILAR PORQUE TIENE LETRAS RARAS Y YA NO TENGO TIEMPO, EN ESTE COMENTADO ESTA EL ERROR, DESDE AHI NO ME DEJABA
 
 
@@ -40,13 +42,18 @@ class Estudiante{
     }
     
 }
-public class Error extends Exception{
-    public Error(){
+class Error extends Exception{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public Error(){
         super("La lista no tiene estudiantes");
     }
 }
 
-public class RecEst {
+public class H {
 
 
     public static String[] cantidadMayoresEdad(Estudiante[] listaEstudiantes) throws Error{
@@ -96,7 +103,7 @@ public class RecEst {
         }        
         in.close();
         try{
-             String[] nombres=RecEst.cantidadMayoresEdad(listE);
+             String[] nombres=H.cantidadMayoresEdad(listE);
         for (String n:nombres)
            System.out.println(n);
         }catch(Error e){
