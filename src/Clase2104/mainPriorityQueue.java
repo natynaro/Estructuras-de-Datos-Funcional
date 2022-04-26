@@ -3,6 +3,7 @@ package Clase2104;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+import Clase2604.TareaPriorityQueue;
 import ClaseCompares.Persona;
 
 public class mainPriorityQueue {
