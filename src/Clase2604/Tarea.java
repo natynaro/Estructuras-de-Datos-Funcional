@@ -21,8 +21,12 @@ public class Tarea {
 		while(!pila.isEmpty()) {
 			result= result + pila.pop();
 		}
+		
+		String res="";
+		for(int j=0; j<expresion.length(); j++) {
+			
+		}
 		return result;
-	
 	}
 	
 	public static String PostfijaInf(String expresion) {
