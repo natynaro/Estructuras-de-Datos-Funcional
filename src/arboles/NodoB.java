@@ -33,6 +33,9 @@ public class NodoB <E extends Comparable<E>>{
 	}
 
 	public void setHijoIzq(NodoB<E> hijoIzq) {
+		if(hijoIzq!=null){
+			hijoIzq.setPadre(this);
+		}
 		this.hijoIzq = hijoIzq;
 	}
 
@@ -41,6 +44,9 @@ public class NodoB <E extends Comparable<E>>{
 	}
 
 	public void setHijoDer(NodoB<E> hijoDer) {
+		if(hijoDer!=null) {
+			hijoDer.setPadre(this);
+		}
 		this.hijoDer = hijoDer;
 	}
 

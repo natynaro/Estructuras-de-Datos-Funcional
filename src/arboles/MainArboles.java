@@ -19,12 +19,40 @@ public class MainArboles {
 		
 		ArbolB<Integer> a= new ArbolB<Integer>(n1);
 		//Preorden= 10, 7, 5, 20, 9, 15, 12
-		System.out.println("Preorden");
+		/*System.out.println("Preorden");
 		a.preorden();
 		System.out.println("Posorden");
 		a.posorden();
 		System.out.println("Inorden");
-		a.inorden();
+		a.inorden();*/
+		
+		ArbolBB<Integer> b= new ArbolBB<Integer>();
+		try {
+			b.insertNodo(5);
+			b.insertNodo(2);
+			b.insertNodo(3);
+			b.insertNodo(1);
+			b.insertNodo(9);
+			b.insertNodo(7);
+			b.insertNodo(8);
+			b.insertNodo(6);
+			b.insertNodo(4);
+			b.insertNodo(10);
+			b.insertNodo(15);
+			b.insertNodo(16);
+			
+			b.inorden();
+			System.out.println();
+			System.out.println();
+			b.preorden();
+			System.out.println();
+			System.out.println();
+			b.posorden();
+			System.out.println();
+			System.out.println();
+		}catch (ExceptionNodo e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 
