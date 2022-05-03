@@ -1,8 +1,10 @@
 package arboles;
 
+import java.util.ArrayList;
+
 public class MainArboles {
 
-	public static void main(String[] args) {
+	public static <E> void main(String[] args) {
 		NodoB<Integer> n1= new NodoB<Integer>(10);
 		NodoB<Integer> n2= new NodoB<Integer>(7);
 		NodoB<Integer> n3= new NodoB<Integer>(15);
@@ -18,13 +20,8 @@ public class MainArboles {
 		n4.setHijoDer(n20);
 		
 		ArbolB<Integer> a= new ArbolB<Integer>(n1);
-		//Preorden= 10, 7, 5, 20, 9, 15, 12
-		/*System.out.println("Preorden");
-		a.preorden();
-		System.out.println("Posorden");
-		a.posorden();
-		System.out.println("Inorden");
-		a.inorden();*/
+		System.out.println("Altura de 7: "+n2.alturaNodo(n2));
+		n2.alturaNodo(n2);
 		
 		ArbolBB<Integer> b= new ArbolBB<Integer>();
 		try {
@@ -41,15 +38,78 @@ public class MainArboles {
 			b.insertNodo(15);
 			b.insertNodo(16);
 			
+			System.out.println("Altura de 5: "+ n2.alturaNodo(b.raiz));
+			
+			System.out.println("Inorden sysout");
 			b.inorden();
 			System.out.println();
+			
+			System.out.println("Inorden ArrayList");
+			ArrayList w=b.inorden2();
+			for(int i=0; i<w.size();i++) {
+				System.out.println(w.get(i));
+			}
 			System.out.println();
+			
+			
+			System.out.println("Preorden Sysout");
 			b.preorden();
 			System.out.println();
+		
+			System.out.println("Preorden ArrayList");
+			ArrayList t=b.preorden2();
+			for(int i=0; i<t.size();i++) {
+				System.out.println(t.get(i));
+			}
 			System.out.println();
-			b.posorden();
+			
+		
+			System.out.println("Posorden Sysout");
+			b.posorden(); 
 			System.out.println();
+			
+			System.out.println("Posorden 	ArrayList");
+			b.posorden2();
+			ArrayList y=b.posorden2();
+			for(int i=0; i<y.size();i++) {
+				System.out.println(y.get(i));
+			}
 			System.out.println();
+			
+			System.out.println("El nodo buscado es: ");
+			System.out.println(b.buscarNodo(4).toString());
+			
+			b.eliminarNodo(4);
+			System.out.println("Preorden Sysout");
+			b.preorden();
+			
+			
+			
+			
+			
+			ArbolBB<Integer> e= new ArbolBB<Integer>();
+			System.out.println();
+			
+			
+			e.insertNodo(10);
+			e.insertNodo(15);
+			e.insertNodo(17);
+			e.insertNodo(13);
+			e.insertNodo(5);
+			e.insertNodo(8);
+			e.insertNodo(6);
+			e.insertNodo(3);
+			
+			e.preorden();
+			System.out.println();
+			
+			e.deleteNodo(17);
+			e.preorden();
+			
+			/*ArbolB Z= new ArbolB();
+			Z.armarArbol(b.preorden2(), b.inorden2());
+			
+			Z.inorden();*/
 		}catch (ExceptionNodo e) {
 			System.out.println(e.getMessage());
 		}
