@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class MainArboles {
 
-	public static <E> void main(String[] args) {
+	public static <E> void main(String[] args) {/*
 		NodoB<Integer> n1= new NodoB<Integer>(10);
 		NodoB<Integer> n2= new NodoB<Integer>(7);
 		NodoB<Integer> n3= new NodoB<Integer>(15);
@@ -21,10 +21,10 @@ public class MainArboles {
 		
 		ArbolB<Integer> a= new ArbolB<Integer>(n1);
 		System.out.println("Altura de 7: "+n2.alturaNodo(n2));
-		n2.alturaNodo(n2);
+		n2.alturaNodo(n2);*/
 		
 		ArbolBB<Integer> b= new ArbolBB<Integer>();
-		try {
+		/*try {
 			b.insertNodo(5);
 			b.insertNodo(2);
 			b.insertNodo(3);
@@ -110,10 +110,24 @@ public class MainArboles {
 			Z.armarArbol(b.preorden2(), b.inorden2());
 			
 			Z.inorden();*/
-		}catch (ExceptionNodo e) {
+		/*}catch (ExceptionNodo e) {
+			
 			System.out.println(e.getMessage());
-		}
+		}*/
 
+		ArbAVL arbolito= new ArbAVL();
+		arbolito.insertar(10);
+		arbolito.insertar(5);
+		arbolito.insertar(13);
+		arbolito.insertar(1);
+		arbolito.insertar(6);
+		arbolito.insertar(17);
+		
+		arbolito.preorden();
+		System.out.println(arbolito.getRaiz().toString());
+		arbolito.insertar(16);
+		arbolito.preorden();
+	
 	}
 
 }

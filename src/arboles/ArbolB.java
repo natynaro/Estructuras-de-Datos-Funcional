@@ -175,7 +175,7 @@ public class ArbolB <E extends Comparable<E>>{
 		return arbolB;
 		
 	}
-	public void armarArbol2(ArrayList<E>preorden,ArrayList<E>inorden,ArrayList<E> derecha, ArrayList<E> izquierda, ArbolB arbol) {
+	public void armarArbol2(ArrayList<E>preorden,ArrayList<E>inorden,ArrayList<E> derecha, ArrayList<E> izquierda, ArbolB<E> arbol) {
 		NodoB aux=arbol.getRaiz();
 		
 		if(derecha.size()==1) {
@@ -221,6 +221,8 @@ public class ArbolB <E extends Comparable<E>>{
 		return 0;
 		
 	}
+	//arraylist Preorden en un arbol binario de busqueda, hacer el arbol. 
+	//*Foto a mano* la insercion de ese arboll, osea que exista el arbol . 
 
 	
 }
