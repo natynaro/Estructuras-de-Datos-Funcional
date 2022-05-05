@@ -5,10 +5,13 @@ import java.util.ArrayList;
 public class ArbAVL <E extends Comparable<E>>{
 	
 	private NodoAVL raiz;
+	
 	public ArbAVL() {
 		raiz=null;
 	}
-	
+	public ArbAVL(NodoAVL<E>n) {
+		raiz=n;
+	}
 	
 	
 	public NodoAVL getRaiz() {
@@ -220,9 +223,10 @@ public class ArbAVL <E extends Comparable<E>>{
 		
 	}
 	
-	//Inserción con balacneo libro
+	//Inserción con balanceo libro
 	
 	public void insertarNodo(E llave) throws Exception {
+		alturaTodosNodos();
 		if(raiz==null) {
 			raiz= new NodoAVL(llave);
 		}else {
@@ -272,14 +276,83 @@ public class ArbAVL <E extends Comparable<E>>{
 		return raiz;
 	}
 	
+	public void alturaTodosNodos() throws Exception {
+		alturaTodosNodos(raiz);
+		
+	}
+	public void alturaTodosNodos(NodoAVL n) throws Exception {
+		if(n!=null) {
+			FENodos(n);
+			FENodos(n.getHijoD());
+			FENodos(n.getHijoI());
+		}else {
+			throw new Exception("idk");
+		}
+		
+	}
+	//derecho-izquierdo
+	public int FENodos(NodoAVL n) {
+		if(n==null) {
+			return 0;
+		}else if(n.getHijoI()==null && n.getHijoD()!=null) {
+			return n.getHijoD().alturaNodo(n);
+		}else if(n.getHijoI()!=null && n.getHijoD()==null) {
+			return 0-n.getHijoI().alturaNodo(n);
+		}else {
+			return n.getHijoD().alturaNodo(n)-n.getHijoI().alturaNodo(n);
+		}
+		
+		
+	}
+	
 	//Eliminado de nodos
 	
 	public  void eliminar(E valor) throws Exception{
 		raiz=borrarAVL(raiz, valor);
 	}
-	public NodoAVL borrarAVL(NodoAVL r, E llave) throws Exception {
+	public NodoAVL borrarAVL(NodoAVL<E> r, E clave) throws Exception {
+		if(r==null) {
+			throw new Exception("NodoNoEncontrado");
+		}else if(clave.compareTo(r.getLlave())<0) {
+			NodoAVL iz= borrarAVL(r.getHijoI(), clave);
+			r.setHijoI(iz);
+			alturaTodosNodos();
+			/*if(bandera) r=equilibrar1(r, bandera);*/
+		}else if(clave.compareTo(r.getLlave())>0) {
+			NodoAVL dr=borrarAVL(r.getHijoD(),clave);
+		}else {
+			NodoAVL q=r;
+			if(q.getHijoI()==null) {
+				r=q.getHijoD();
+			}else if(q.getHijoD()==null) {
+				r=q.getHijoI();
+			}else {
+				NodoAVL iz;
+				iz= reemplazar(r, r.getHijoI());
+				r.setHijoI(iz);
+				alturaTodosNodos();
+				/*if(bandera) r=equilibrar1(r, bandera)*/
+			}
+			q=null;
+		}
 		return r;
 		
+	}
+	private NodoAVL reemplazar(NodoAVL n, NodoAVL act) throws Exception {
+		if(act.getHijoD()!=null) {
+			NodoAVL d;
+			d=reemplazar(n, act.getHijoD());
+			act.setHijoD(d);
+			alturaTodosNodos();
+			/*if(bandera) act=equilibrar2(act, bandera)*/
+		}else {
+			n.setLlave(act.getLlave());
+			n=act;
+			act=act.getHijoI();
+			n=null;
+		}
+		alturaTodosNodos();
+		return act;
 	}
 	
 	//metodo para insertar
@@ -394,8 +467,119 @@ public class ArbAVL <E extends Comparable<E>>{
 		return result;
 		
 	}
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * LO QUE HIZO LA PROFE
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * */
 	
+	public NodoAVL<E> desbalance(NodoAVL<E> n){
+		NodoAVL<E> nodo=n;
+		while(nodo!=null && Math.abs(nodo.FE())<=1) {
+			nodo=(NodoAVL<E>) nodo.getPadre();	
+		}
+		return nodo;
+	}
+	/*private void balancearC(NodoAVL<E> n) {
+		NodoAVL<E> desb=desbalance(n);
+		if(desb!=null) {
+			NodoAVL<E> p= desb.getPadre();
+			desb=(desb.getFe()>0)?
+					((desb.getHijoD().getFe())>=0)?
+		}
+	}*/
 	
+	private void balancear(NodoAVL<E> n) {
+		NodoAVL<E> desb=desbalance(n);
+		if(desb!=null) {
+			NodoAVL<E> p=(NodoAVL<E>) desb.getPadre();
+			if(desb.FE()>0) {
+				if(desb.getHijoD().FE()>=0) {
+					desb=(NodoAVL<E>) balanceSimpleIzq(desb);
+				}else desb= balanceDobleIzq(desb);
+			}else { //EQUIPO1
+				if(desb.FE()<0) {
+					if(desb.getHijoI().FE()<=0) desb=(NodoAVL<E>) 
+							balanceSimpleDer(desb);
+					else desb= balanceDobleDer(desb);
+				}
+				if(p==null) raiz=desb;
+				else {
+					if(desb.getLlave().compareTo(p.getLlave())>0)
+						p.setHijoD(desb);
+					else p.setHijoI(desb);
+				}
+			}
+		}
+	}
+	
+	public NodoAVL<E> balanceSimpleIzq(NodoAVL<E> n){
+		NodoAVL<E> der=n.getHijoD();
+		der.setPadre(n.getPadre());
+		n.setHijoD(der.getHijoI());
+		der.setHijoI(n);
+		return der;
+	
+	}
+	
+	public NodoAVL<E> balanceSimpleDer(NodoAVL<E> n){
+		NodoAVL<E> izq=n.getHijoI();
+		izq.setPadre(n.getPadre());
+		n.setHijoI(izq.getHijoD());
+		izq.setHijoD(n);
+		return izq;
+	
+	}
+	public NodoAVL<E> balanceDobleDer(NodoAVL<E> n){
+		n.setHijoI(balanceSimpleIzq(n.getHijoI()));
+		return (NodoAVL<E>) balanceSimpleDer(n);
+	}
+	
+	public NodoAVL<E> balanceDobleIzq(NodoAVL<E> n){
+		n.setHijoD(balanceSimpleDer(n.getHijoD()));
+		return (NodoAVL<E>) balanceSimpleIzq(n);
+	}
+	
+	//hacer dos insertar
+	//balancear
+	
+	public void insertNodoAVL(NodoAVL<E> n ) {
+		
+	}
+	public void insertNodo(E llaveN) throws ExceptionNodo{
+		NodoAVL a=new NodoAVL<E>(llaveN);
+		raiz=(NodoAVL) insertNodo(a, raiz);
+		balancear(a);
+	}
+	
+	public void insertNodo(NodoAVL<E> n) throws ExceptionNodo{
+		raiz=(NodoAVL) insertNodo(n, raiz);
+		NodoAVL a = (NodoAVL) n;
+		balancear(a);
+	}
+	
+	protected NodoAVL<E> insertNodo(NodoAVL<E> n, NodoAVL<E> r) throws ExceptionNodo{
+		if(r==null) {
+		r=n;
+		}	else {
+			if(n.getLlave().compareTo(r.getLlave())<0)
+				r.setHijoI(insertNodo(n, r.getHijoI()));
+			if(n.getLlave().compareTo(r.getLlave())>0) 
+				r.setHijoD(insertNodo(n, r.getHijoD()));
+			if(n.getLlave().compareTo(r.getLlave())==0) 
+				throw new ExceptionNodo("El nodo està repetido");
+		}
+		return r;
+	}
 }
 	
 	

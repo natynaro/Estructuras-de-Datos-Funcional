@@ -115,18 +115,32 @@ public class MainArboles {
 			System.out.println(e.getMessage());
 		}*/
 
-		ArbAVL arbolito= new ArbAVL();
-		arbolito.insertar(10);
-		arbolito.insertar(5);
-		arbolito.insertar(13);
-		arbolito.insertar(1);
-		arbolito.insertar(6);
-		arbolito.insertar(17);
+		NodoAVL<Integer> n1= new NodoAVL<Integer> (1);
+		NodoAVL<Integer> n2= new NodoAVL<Integer> (2);
+		NodoAVL<Integer> n3= new NodoAVL<Integer> (3);
+		NodoAVL<Integer> n4= new NodoAVL<Integer> (4);
+		NodoAVL<Integer> n5= new NodoAVL<Integer> (5);
+		NodoAVL<Integer> n6= new NodoAVL<Integer> (6);
+		NodoAVL<Integer> n7= new NodoAVL<Integer> (7);
+		NodoAVL<Integer> n8= new NodoAVL<Integer> (8);
+		NodoAVL<Integer> n9= new NodoAVL<Integer> (9);
+		NodoAVL<Integer> n10= new NodoAVL<Integer> (10);
+		NodoAVL<Integer> n11= new NodoAVL<Integer> (11);
+		NodoAVL<Integer> n12= new NodoAVL<Integer> (12);
+		NodoAVL<Integer> n13= new NodoAVL<Integer> (13);
+		ArbAVL<Integer> a= new ArbAVL<Integer>(n8);
 		
-		arbolito.preorden();
-		System.out.println(arbolito.getRaiz().toString());
-		arbolito.insertar(16);
-		arbolito.preorden();
+		try {
+			a.insertNodo(n3);
+			a.insertNodo(n12);
+			a.insertNodo(n2);
+			a.insertNodo(n1);
+			a.preorden();
+			
+		} catch (ExceptionNodo e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
 	}
 
