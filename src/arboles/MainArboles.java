@@ -136,6 +136,8 @@ public class MainArboles {
 			a.insertNodo(n2);
 			a.insertNodo(n1);
 			a.preorden();
+			System.out.println(	a.CantidadHojas());
+	
 			
 		} catch (ExceptionNodo e) {
 			// TODO Auto-generated catch block

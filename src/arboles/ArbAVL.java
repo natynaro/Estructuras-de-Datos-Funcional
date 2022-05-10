@@ -45,6 +45,7 @@ public class ArbAVL <E extends Comparable<E>>{
 		}
 		
 	}
+	//el buscar está diferente
 	
 	
 	//Obtener el Factor de equilibrio
@@ -310,6 +311,8 @@ public class ArbAVL <E extends Comparable<E>>{
 	public  void eliminar(E valor) throws Exception{
 		raiz=borrarAVL(raiz, valor);
 	}
+	
+	
 	public NodoAVL borrarAVL(NodoAVL<E> r, E clave) throws Exception {
 		if(r==null) {
 			throw new Exception("NodoNoEncontrado");
@@ -318,6 +321,7 @@ public class ArbAVL <E extends Comparable<E>>{
 			r.setHijoI(iz);
 			alturaTodosNodos();
 			/*if(bandera) r=equilibrar1(r, bandera);*/
+			
 		}else if(clave.compareTo(r.getLlave())>0) {
 			NodoAVL dr=borrarAVL(r.getHijoD(),clave);
 		}else {
@@ -331,7 +335,10 @@ public class ArbAVL <E extends Comparable<E>>{
 				iz= reemplazar(r, r.getHijoI());
 				r.setHijoI(iz);
 				alturaTodosNodos();
+				
 				/*if(bandera) r=equilibrar1(r, bandera)*/
+				
+				
 			}
 			q=null;
 		}
@@ -354,6 +361,71 @@ public class ArbAVL <E extends Comparable<E>>{
 		alturaTodosNodos();
 		return act;
 	}
+	/*public void eliminar (Object valor) throws Exception
+	{ Comparador dato;
+	dato = (Comparador) valor; Logical flag = new Logical(false);
+	} raiz = borrarAvl(raiz, dato, flag);
+	private NodoAvl borrarAvl(NodoAvl r, Comparador clave,
+	Logical cambiaAltura) throws Exception
+	{ if (r == null)
+	{ throw new Exception (" Nodo no encontrado "); }else if (clave.menorQue(r.valorNodo()))
+	{ NodoAvl iz;
+	iz = borrarAvl((NodoAvl)r.subarbolIzdo(), clave, cambiaAltura); r.ramaIzdo(iz);
+	if (cambiaAltura.booleanValue())
+	} r = equilibrar1(r, cambiaAltura);
+	else if (clave.mayorQue(r.valorNodo()))
+	{ NodoAvl dr;
+	dr = borrarAvl((NodoAvl)r.subarbolDcho(), clave, cambiaAltura); r.ramaDcho(dr);
+	if (cambiaAltura.booleanValue())
+	} r = equilibrar2(r, cambiaAltura);
+	else // Nodo encontrado
+	{ NodoAvl q;
+	q = r; // nodo a quitar del árbol if (q.subarbolIzdo()== null)
+	{ r = (NodoAvl) q.subarbolDcho(); } cambiaAltura.setLogical(true);
+	else if (q.subarbolDcho() == null)
+	{ r = (NodoAvl) q.subarbolIzdo(); } cambiaAltura.setLogical(true);
+	else
+	{ // tiene rama izquierda y derecha
+	www.FreeLibros.org
+	        
+	        426   
+	Estructuras de datos en Java
+	NodoAvl iz;
+	iz = reemplazar(r, (NodoAvl)r.subarbolIzdo(), cambiaAltura); r.ramaIzdo(iz);
+	if (cambiaAltura.booleanValue())
+	} r = equilibrar1(r, cambiaAltura); } q = null;
+	} return r;
+	private
+	NodoAvl reemplazar(NodoAvl n, NodoAvl act, Logical cambiaAltura)
+	{ if (act.subarbolDcho() != null)
+	{ NodoAvl d;
+	d = reemplazar(n, (NodoAvl)act.subarbolDcho(), cambiaAltura); act.ramaDcho(d);
+	if (cambiaAltura.booleanValue())
+	} act = equilibrar2(act, cambiaAltura);
+	else
+	{ n. nuevoValor(act.valorNodo()); n = act;
+	act = (NodoAvl)act.subarbolIzdo();
+	n = null;
+	} cambiaAltura.setLogical(true);
+	} return act;
+	private NodoAvl { NodoAvl n1;
+	switch (n.fe) { case -1 : case 0 :
+	case +1 :
+	}
+	} return n;
+	private NodoAvl
+	equilibrar1(NodoAvl n, Logical cambiaAltura)
+	n.fe = 0;
+	break;
+	n.fe = 1; cambiaAltura.setLogical(false); break;
+	//se aplicar un tipo de rotación derecha n1 = (NodoAvl)n.subarbolDcho();
+	if (n1.fe >= 0)
+	{ if (n1.fe == 0) //la altura no vuelve a disminuir cambiaAltura.setLogical(false);
+	} n = rotacionDD(n, n1);
+	else
+	n = rotacionDI(n, n1);
+	break;
+	equilibrar2(NodoAvl n, Logical cambiaAltura)*/
 	
 	//metodo para insertar
 	
@@ -580,6 +652,62 @@ public class ArbAVL <E extends Comparable<E>>{
 		}
 		return r;
 	}
+	
+	public void deleteNodo(E llave) {
+		NodoAVL<E> n=buscar(llave);
+		NodoAVL<E> padre;
+		if(n.getHijoD()!=null && n.getHijoI()!=null)
+			padre=buscarAntecesor(n).getPadre();
+		else
+			padre=n.getPadre();
+		deleteNodo(llave);///super.deleteNodo(llave);
+		if(padre==null)
+			balancear(raiz);
+		else {
+			while(padre!=null) {
+				balancear(padre);
+				padre=padre.getPadre();
+			}
+		
+		}
+	}
+	
+	public NodoAVL<E> buscarAntecesor(NodoAVL<E> n) {
+        return(n.getHijoD() == null)? null: buscarMax(n.getHijoI());
+    }
+	
+    public NodoAVL<E> buscarMax(NodoAVL<E> n){
+        return(n.getHijoD() == null)? n: buscarMax(n.getHijoD());
+    }
+    
+    
+    //Cantidad hojas
+    
+    public int CantidadHojas() {
+    	
+    	return CantidadHojas(this.raiz);
+    }
+    public int CantidadHojas(NodoAVL<E> n) {
+    	if(n==null) {
+    		return 0;
+    	}
+    	if(n.getHijoD()==null && n.getHijoI()==null) {
+    		return 1;
+    		
+    	}
+    	return CantidadHojas(n.getHijoD())+ CantidadHojas(n.getHijoI());
+    	
+    	
+    }
+    
+    /*
+     * public int alturaNodo(NodoAVL<E> n) {
+		if(n==null) return -1;
+		int altDer=(n.getHijoD()==null)? 0:1+alturaNodo(n.getHijoD());
+		int altIzq=(n.getHijoI()==null)? 0:1+alturaNodo(n.getHijoI());
+		return Math.max(altDer, altIzq);
+	}*/
+	
 }
 	
 	
