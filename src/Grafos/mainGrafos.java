@@ -49,6 +49,9 @@ public class mainGrafos {
        // s=grafo.dijkstra(1, 7);
         grafo.imprimirCamino(s);
         System.out.println(v7.getDistance());
+        Stack<Vertice<Integer>> t;
+        t=  grafo.MenorCaminoConPesos(v1,v7);
+        grafo.imprimirCamino(t);
  
 /*
         try {

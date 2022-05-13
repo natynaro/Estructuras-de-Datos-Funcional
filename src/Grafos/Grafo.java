@@ -2,7 +2,10 @@ package Grafos;
 
 import java.util.*;
 
+import ClaseCompares.Persona;
+
 class ExceptionVertice extends Exception{
+	
     private static final long serialVersionUID = 1L;
 
     public ExceptionVertice(){
@@ -13,6 +16,7 @@ class ExceptionVertice extends Exception{
         super(s);
     }
 }
+
 public class Grafo <E extends Comparable<E>>{
 
 	private LinkedList<Vertice<E>> vertices;
@@ -87,4 +91,40 @@ public class Grafo <E extends Comparable<E>>{
         }
         System.out.println();
     }
+	public void inicializarVerticesPeso() {
+		ListIterator<Vertice<E>> list = vertices.listIterator();
+		while(list.hasNext()) {
+		Vertice<E> v = list.next();
+		v.setAnterior(null);
+		v.setDistance(Double.POSITIVE_INFINITY);
+		}
+	}
+	public Stack<Vertice<E>> MenorCaminoConPesos(Vertice<E> inicio, Vertice<E> destino){
+	
+		inicializarVertices();//inicializar los anteriores y distancias antes de recorrelos
+		//Recorrer a lo ancho todas las aristas con que tiene conexión
+		Queue<Vertice<E>> vSinVisitar= new PriorityQueue<Vertice<E>>();
+		inicio.setDistance(0);
+		vSinVisitar.add(inicio);
+		while(!vSinVisitar.isEmpty()) {
+			//buscar Vertice
+			Vertice<E> actual= vSinVisitar.poll();
+			//Recorrer adyacentes y poner en cola sin visitar
+			ListIterator<Arista<E>> iterator= actual.getAdyacentes().listIterator();
+			while(iterator.hasNext()) {
+			
+				Arista<E> a=iterator.next();
+				Vertice<E> v=a.getDestino();
+			
+				if(v.getAnterior()==null||v.getDistance()>a.getPeso()+actual.getDistance()) {//si no tiene peso(distancia) o si se encuentra una manera de llegar más corta, se va a reemplazar con lo nuevo
+					v.setAnterior(actual);
+					v.setDistance(actual.getDistance()+a.getPeso());
+					if(!vSinVisitar.contains(v)) {
+						vSinVisitar.add(v);
+					}
+				}
+			}
+		}
+		return camino(inicio,destino);
+	}
 }
