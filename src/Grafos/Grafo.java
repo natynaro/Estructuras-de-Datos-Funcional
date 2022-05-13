@@ -99,7 +99,7 @@ public class Grafo <E extends Comparable<E>>{
 		v.setDistance(Double.POSITIVE_INFINITY);
 		}
 	}
-	public Stack<Vertice<E>> MenorCaminoConPesos(Vertice<E> inicio, Vertice<E> destino){
+	public Stack<Vertice<E>> MenorCaminoConPesos(Vertice<E> inicio, Vertice<E> destino){//Dijkstra
 	
 		inicializarVertices();//inicializar los anteriores y distancias antes de recorrelos
 		//Recorrer a lo ancho todas las aristas con que tiene conexión
