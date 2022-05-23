@@ -1,6 +1,14 @@
 package arboles;
 
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
+
 
 public class MainArboles {
 
@@ -130,6 +138,11 @@ public class MainArboles {
 		NodoAVL<Integer> n13= new NodoAVL<Integer> (13);
 		ArbAVL<Integer> a= new ArbAVL<Integer>(n8);
 		
+		
+		
+		
+		
+		
 		try {
 			a.insertNodo(n3);
 			a.insertNodo(n12);
@@ -137,6 +150,8 @@ public class MainArboles {
 			a.insertNodo(n1);
 			a.preorden();
 			System.out.println(	a.CantidadHojas());
+	
+			
 	
 			
 		} catch (ExceptionNodo e) {
