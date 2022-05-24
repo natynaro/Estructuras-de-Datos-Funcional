@@ -24,6 +24,7 @@ class EBarrio extends Exception {
 }
 
 
+
 class PaqueteReciclaje{
  private String barrio;
  private double kg;

@@ -95,5 +95,26 @@ public class Busquedas {
 		return(i==ps.length) ? -1: i;
 		}
 	
-	
+ public static int busquedaRecursiva(){
+         
+     }
+    public static int busquedaBinRecursiva(int[] a, int valor, int inicio,int fin){
+        int medio;
+        if (a[inicio] >= valor)
+            return  inicio;
+        else {
+            medio=(inicio+fin)/2;
+            if (a[medio]>= valor)
+                return medio;
+            else{
+            	if((valor-a[medio])<) {
+            		
+            	}
+            }
+                if (a[medio].compareTo(valor)>0)
+                    return busquedaBinRecursiva(a,valor, inicio,medio-1);
+                else
+                    return busquedaBinRecursiva(a, valor,medio+1,fin);
+            }
+        }
 }
